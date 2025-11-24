@@ -1,0 +1,29 @@
+<mvc:View controllerName="sapui5.controller.HelloPanel"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Panel id="panel1" headerText="{i18n>helloPanelTitle}" class="sapUiResponsiveMargin" width="auto">
+        <content>
+            <Button
+                id="helloDialogButton"
+                icon="sap-icon://world"
+                text="{i18n>openDialogButtonText}"
+                press=".onOpenDialog"
+                class="sapUiSmallMarginEnd"/>
+            <Button 
+                id="hello_btn" 
+                text="{i18n>showHelloButtonText}" 
+                press=".onShowHello" 
+                class="myCustomButton"/>
+            <Input 
+                id="Dynamic_text" 
+                value="{/recipient/name}" 
+                description="Hello {/recipient/name}" 
+                valueLiveUpdate="true" 
+                width="60%"/>
+            <FormattedText 
+                id="Text_1" 
+                htmlText="Hello {/recipient/name}" 
+                class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
+        </content>
+    </Panel>
+</mvc:View>
