@@ -1,5 +1,5 @@
 sap.ui.define([
-    "sap/ui/base/ManageObject",
+    "sap/ui/base/ManagedObject",
     "sap/ui/core/Fragment"
 ], (ManageObject, Fragment) => {
     "use strict";
@@ -23,7 +23,20 @@ sap.ui.define([
                         oView.byId("helloDialog").close();
                     }
                 }
-            }
+            
+            //load asynchronous XML fragment
+            Fragment.load({
+                id: oView.getId(),
+                name: "sapui5.view.HelloDialog",
+                controller: oFragmentController
+            }).then(function(oDialog){
+                //connect the dialog to the root view of the component (models, lifecycle)
+                oView.addDependent(oDialog);
+                oDialog.open();
+            })
+        } else{
+            oView.byId("helloDialog").open();
         }
-    })
-}) 
+        }
+    });
+}) ;

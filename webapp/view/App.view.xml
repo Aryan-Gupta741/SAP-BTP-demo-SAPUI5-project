@@ -5,9 +5,17 @@
     <App id="sample" class="myAppDemoWT">
         <pages>
             <Page id="page1" title="{i18n>homePageTitle}">
+                <headerContent>
+                    <Button
+                        id="dialogComponent"
+                        icon="sap-icon://hello-world"
+                        press=".onOpenDialog"/>
+                </headerContent>
                 <content>
                     <mvc:XMLView id="nested-view" 
                         viewName="sapui5.view.HelloPanel" />
+                    <mvc:XMLView id="list"
+                        viewName="sapui5.view.InvoiceList"/>
                 </content>
             </Page>
         </pages>

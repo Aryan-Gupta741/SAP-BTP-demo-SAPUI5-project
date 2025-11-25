@@ -1,0 +1,29 @@
+<mvc:View
+    controller="sapui5.controller.InvoiceList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+
+    <List 
+        id="list_1"
+        headerText="{i18n>invoiceListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{invoice>/Invoices}" >
+
+        <items>
+            <ObjectListItem 
+                id="obj_list"
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                        parts: [
+                            {path:'invoice>ExtendedPrice'},
+                            {path:'view>/currency'}],
+                            formatter: '.formatCurrency'
+                        }"
+                numberUnit="{view>/currency}"/>
+        </items>
+
+    </List>
+        
+
+</mvc:View>
