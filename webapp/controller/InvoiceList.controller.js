@@ -8,7 +8,8 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("sapui5.controller.InvoiceList",{
-        formatter: formatter,
+        statusText: formatter.statusText,
+        formatCurrency: formatter.formatCurrency,
 
         onInit: function(){
             var oViewModel = new JSONModel({

@@ -44,7 +44,7 @@
                 <firstStatus>
                     <ObjectStatus id="Status_text" text="{
                         path: 'invoice>Status',
-                        formatter: '.formatter.statusText'
+                        formatter: '.statusText'
                     }"/>
                 </firstStatus>
             </ObjectListItem>

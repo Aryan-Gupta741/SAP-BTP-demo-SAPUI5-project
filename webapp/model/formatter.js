@@ -6,7 +6,9 @@ sap.ui.define([], function () {
         return "";
       }
       return new sap.ui.model.type.Currency({
-        showMeasure: false
+        showMeasure: false,
+        maxFractionDigits: 2,
+        minFractionDigits: 2
       }).formatValue([price, currency], "string");
     },
 
