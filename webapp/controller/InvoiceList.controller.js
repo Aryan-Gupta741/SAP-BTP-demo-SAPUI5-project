@@ -1,10 +1,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+    "../model/formatter",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], (Controller, JSONModel, formatter, Filter, FilterOperator) => {
     "use strict";
 
     return Controller.extend("sapui5.controller.InvoiceList",{
+        formatter: formatter,
+
         onInit: function(){
             var oViewModel = new JSONModel({
                 currency: "EUR"
@@ -12,15 +17,18 @@ sap.ui.define([
             this.getView().setModel(oViewModel, "view")
         },
 
-        
-        formatCurrency: function(price, currency) {
-            if (!price || !currency) {
-                return "";
+        onFilterInvoices: function(oEvent){
+            //build the flter array
+            const aFilter = [];
+            const sQuery = oEvent.getParameter("query");
+            if(sQuery) {
+                aFilter.push(new Filter("ProductName", FilterOperator.Contains, sQuery));
             }
-            return new sap.ui.model.type.Currency({
-                showMeasure: false
-            }).formatValue([price, currency], "string");
-        }
 
+            //filter binding
+            const oList = this.byId("invoiceList");
+            const oBinding = oList.getBinding("items");
+            oBinding.filter(aFilter);
+        }
     });
 });

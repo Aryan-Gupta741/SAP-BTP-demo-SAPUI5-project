@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
 
 specVersion: "3.1"
 metadata:
@@ -26,3 +25,9 @@ server:
       configuration:
         flp:
           theme: sap_horizon
+    # 🔹 Added proxy middleware for Northwind OData
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /destinations/Northwind
+      configuration:
+        baseUri: https://services.odata.org
